@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
 
     @IBOutlet weak var webView: UIWebView!
     
@@ -20,34 +20,78 @@ class ViewController: UIViewController {
         getIsLoading()
     }
 
-    // webviewのサイズを設定する
-    public func setupFrame(){
-        webView.frame = self.view.bounds
-    }
-    
-    // ロード中かどうかの判別を取得する
-    public func getIsLoading(){
-        print(webView.isLoading)
-    }
-    
-    // 表示するURLを設定する
-    public func setupLoadRequest(){
-        webView.loadRequest(URLRequest(url: URL(string: "https://www.google.co.jp/")!))
-    }
-    
-    // ロードを停止する
-    public func doStopLoading(){
-        webView.stopLoading()
-    }
-    
-    // リロードする
-    public func doReload(){
-        webView.reload()
+    // MARK: - IBActions
+
+    @IBAction private func didTapGoForwardButton(_ sender: UIBarButtonItem) {
+
+        if webView.canGoForward {
+            webView.goForward()
+        } else {
+            print("goForward出来ません")
+        }
     }
 
+    @IBAction func didTapGoBackButton(_ sender: UIBarButtonItem) {
+
+        if webView.canGoBack {
+            webView.goBack()
+        } else {
+            print("goBack出来ません")
+        }
+    }
+
+    @IBAction func didTapReloadButton(_ sender: UIBarButtonItem) {
+        doReload()
+    }
+
+    @IBAction func didTapStopButton(_ sender: UIBarButtonItem) {
+        if webView.isLoading {
+            doStopLoading()
+        } else {
+            print("ロード中ではありません")
+        }
+    }
+
+    /// JavaScriptを実行する
+    @IBAction func didTapActionButton(_ sender: UIBarButtonItem) {
+
+        // JavaScript実行
+        let body = webView.stringByEvaluatingJavaScript(from: "document.body.innerHTML")
+        print(body ?? "JavaScript実行失敗")
+    }
 }
 
-// MARK: UIWebViewDelegate
+
+// MARK: - private
+private extension ViewController {
+
+    // webviewのサイズを設定する
+    func setupFrame(){
+        webView.frame = view.bounds
+    }
+
+    // ロード中かどうかの判別を取得する
+    func getIsLoading(){
+        print(webView.isLoading)
+    }
+
+    // 表示するURLを設定する
+    func setupLoadRequest(){
+        webView.loadRequest(URLRequest(url: URL(string: "https://www.google.co.jp/")!))
+    }
+
+    // ロードを停止する
+    func doStopLoading(){
+        webView.stopLoading()
+    }
+
+    // リロードする
+    func doReload(){
+        webView.reload()
+    }
+}
+
+// MARK: - UIWebViewDelegate
 extension ViewController: UIWebViewDelegate {
     
     // ロード開始時に呼び出される
@@ -59,7 +103,4 @@ extension ViewController: UIWebViewDelegate {
     func webViewDidFinishLoad(_ webView: UIWebView) {
         print("didFinish")
     }
-    
-    
-    
 }

@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -21,13 +21,58 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Tqv-op-t6A">
-                                <rect key="frame" x="0.0" y="28" width="375" height="639"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Tqv-op-t6A">
+                                <rect key="frame" x="0.0" y="20" width="375" height="603"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HHh-T6-2HW">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="kwZ-B7-WgK"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem systemItem="stop" id="8Y3-HC-abh">
+                                        <connections>
+                                            <action selector="didTapStopButton:" destination="BYZ-38-t0r" id="9mB-cu-zMF"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="Une-dy-DyQ"/>
+                                    <barButtonItem systemItem="refresh" id="nwD-R0-poY">
+                                        <connections>
+                                            <action selector="didTapReloadButton:" destination="BYZ-38-t0r" id="Mgr-Eb-iqr"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="flexibleSpace" id="Wqs-qW-k69"/>
+                                    <barButtonItem systemItem="action" id="qZM-X5-roj">
+                                        <connections>
+                                            <action selector="didTapActionButton:" destination="BYZ-38-t0r" id="ZSW-fp-F7Y"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="iyO-Px-OkT"/>
+                                    <barButtonItem systemItem="rewind" id="gbS-5t-6ft">
+                                        <connections>
+                                            <action selector="didTapGoBackButton:" destination="BYZ-38-t0r" id="i3P-Qg-sc5"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="JYI-d3-Lrv"/>
+                                    <barButtonItem systemItem="fastForward" id="t4N-cN-ghf">
+                                        <connections>
+                                            <action selector="didTapGoForwardButton:" destination="BYZ-38-t0r" id="iQB-IS-Vte"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="HHh-T6-2HW" secondAttribute="trailing" id="5Ht-LI-YrY"/>
+                            <constraint firstItem="Tqv-op-t6A" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Blt-u9-NVP"/>
+                            <constraint firstAttribute="trailing" secondItem="Tqv-op-t6A" secondAttribute="trailing" id="EAe-c4-wEp"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="HHh-T6-2HW" secondAttribute="bottom" id="Hxd-Mz-MPc"/>
+                            <constraint firstItem="HHh-T6-2HW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ZAr-pw-tic"/>
+                            <constraint firstItem="HHh-T6-2HW" firstAttribute="top" secondItem="Tqv-op-t6A" secondAttribute="bottom" id="qhi-OX-Mhg"/>
+                            <constraint firstItem="Tqv-op-t6A" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="qvr-H2-KAs"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="webView" destination="Tqv-op-t6A" id="mHS-5h-A0M"/>
